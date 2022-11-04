@@ -8,6 +8,7 @@ For *X86_64* boxes you can check [here](https://app.vagrantup.com/generic).
 List of Vagrant boxes can be obtained from [https://app.vagrantup.com/dcagatay](https://app.vagrantup.com/dcagatay)
 
 ## Building a Box
+
 ### Prerequisites
 
 - Packer (`brew install packer`)
