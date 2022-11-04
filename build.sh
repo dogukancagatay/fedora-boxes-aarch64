@@ -3,7 +3,6 @@
 set -e
 # set -x
 
-[ ! -n "$ARCH" ] && export ARCH="aarch64"
 [ ! -n "$VERSION" ] && export VERSION="0.0.2"
 [ ! -n "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
 [ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
@@ -18,6 +17,4 @@ if [[ -z "${BOX_TYPE}" ]]; then
     BOX_TYPE=fedora35
 fi
 
-# packer build -force -on-error=$PACKER_ON_ERROR -only="generic-${BOX_TYPE}-${ARCH}-parallels" generic-parallels-${ARCH}.json
-packer build -force -on-error=$PACKER_ON_ERROR -only="parallels-iso.generic-${BOX_TYPE}-${ARCH}-parallels" generic-parallels-aarch64.pkr.hcl
-packer build -force -on-error=$PACKER_ON_ERROR -only="parallels-iso.generic-fedora36-${ARCH}-parallels" generic-parallels-aarch64.pkr.hcl
+packer build -force -on-error=$PACKER_ON_ERROR -only="parallels-iso.generic-${BOX_TYPE}-aarch64-parallels" generic-parallels-aarch64.pkr.hcl

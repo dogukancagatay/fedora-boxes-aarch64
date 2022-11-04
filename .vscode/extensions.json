@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "hashicorp.hcl",
+        "fredwangwang.vscode-hcl-format",
+        "4ops.packer",
+        "bbenoist.vagrant"
+    ]
+}
