@@ -1,0 +1,7 @@
+{
+ "Author": "Doğukan Çağatay",
+ "Website": "https://dogukancagatay.com/",
+ "Artifacts": "https://vagrantcloud.com/dcagatay/",
+ "Repository": "https://github.com/dogukancagatay/fedora-boxes-aarch64/",
+ "Description": "Base Parallels Vagrant Fedora boxes for aarch64/arm64"
+}
