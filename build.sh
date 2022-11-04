@@ -20,3 +20,4 @@ fi
 
 # packer build -force -on-error=$PACKER_ON_ERROR -only="generic-${BOX_TYPE}-${ARCH}-parallels" generic-parallels-${ARCH}.json
 packer build -force -on-error=$PACKER_ON_ERROR -only="parallels-iso.generic-${BOX_TYPE}-${ARCH}-parallels" generic-parallels-aarch64.pkr.hcl
+packer build -force -on-error=$PACKER_ON_ERROR -only="parallels-iso.generic-fedora36-${ARCH}-parallels" generic-parallels-aarch64.pkr.hcl
