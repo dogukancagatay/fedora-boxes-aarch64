@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-box = "#{ENV['BOX'] || `echo -n 'local/generic-fedora35-aarch64-parallels'`}"
+box = "#{ENV['BOX'] || 'local/generic-fedora35-aarch64-parallels'}"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "#{box}"

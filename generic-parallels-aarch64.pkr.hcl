@@ -89,10 +89,6 @@ build {
 
   provisioner "shell" {
     expect_disconnect   = "true"
-    only                = [
-      "generic-fedora35-aarch64-parallels",
-      "generic-fedora36-aarch64-parallels"
-    ]
     scripts             = [
       "scripts/fedora/fixdns.sh",
       "scripts/fedora/hostname.sh",
@@ -104,10 +100,6 @@ build {
 
   provisioner "shell" {
     expect_disconnect   = "true"
-    only                = [
-      "generic-fedora35-aarch64-parallels",
-      "generic-fedora36-aarch64-parallels"
-    ]
     pause_before        = "2m0s"
     scripts             = [
       "scripts/fedora/fixtmp.sh",
@@ -119,10 +111,6 @@ build {
 
   provisioner "shell" {
     expect_disconnect   = "true"
-    only                = [
-      "generic-fedora35-aarch64-parallels",
-      "generic-fedora36-aarch64-parallels"
-    ]
     pause_before        = "2m0s"
     scripts             = [
       "scripts/fedora/kernel.sh",

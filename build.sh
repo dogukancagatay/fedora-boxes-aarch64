@@ -3,7 +3,7 @@
 set -e
 # set -x
 
-[ ! -n "$VERSION" ] && export VERSION="0.0.2"
+[ ! -n "$VERSION" ] && export VERSION="0.0.3"
 [ ! -n "$PACKER_ON_ERROR" ] && export PACKER_ON_ERROR="cleanup"
 [ ! -n "$PACKER_MAX_PROCS" ] && export PACKER_MAX_PROCS="2"
 [ ! -n "$PACKER_CACHE_DIR" ] && export PACKER_CACHE_DIR="./packer_cache/"
