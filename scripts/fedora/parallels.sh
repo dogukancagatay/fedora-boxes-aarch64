@@ -46,7 +46,7 @@ mount -o loop /root/parallels-tools-linux.iso /mnt/parallels/
 PTOOLS_DIR="/mnt/parallels"
 
 # if kernel version is >= 6.x apply patch
-if  [[ `uname -r` == 6.* ]]; then
+if  [[ `uname -r` == 6.* ]] && [[ $PARALLELSVERSION == 18.0* ]]; then
   echo "Will patch parallels-tools with 6.x patch for current kernel (`uname -r`)"
 
   PTOOLS_DIR="/tmp/parallels-tool"

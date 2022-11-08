@@ -14,6 +14,8 @@ List of Vagrant boxes can be obtained from [https://app.vagrantup.com/dcagatay](
 - Packer (`brew install packer`)
 - Parallels Desktop (`brew install --cask parallels`)
 - Parallels Virtualization SDK (`brew install --cask parallels-virtualization-sdk`)
+- Vagrant (`brew install --cask vagrant`) *For testing*
+  - Vagrant Parallels Plugin (`vagrant plugin install vagrant-parallels`)
 
 ### Build
 
@@ -30,11 +32,20 @@ To build a specific box, run the following:
 
 ## Changelog
 
+- `0.0.4`
+  - Parallels tools upgraded to 18.1.0
+- `0.0.3`
+  - Some script rearrangements.
 - `0.0.2`
   - Fixed Parallels virtual disk snapshot compaction/merger issue.
   - Add `cloud-utils-growpart` package.
 - `0.0.1`
   - Initial alpha release.
+
+## Vagrant Cloud URLs
+
+- [Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)
+- [Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)
 
 ## Testing/Running
 
@@ -60,7 +71,7 @@ vagrant up
 Example command:
 
 ```bash
-./upload-box.sh fedora-35-aarch64 0.0.2 ./output/generic-fedora35-aarch64-parallels-0.0.2.box
+./upload-box.sh fedora-35-aarch64 0.0.4 "Update parallels tools to 18.1.0" ./output/generic-fedora35-aarch64-parallels-0.0.2.box
 ```
 
 ## Credits

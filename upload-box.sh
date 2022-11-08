@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
+# set -x
 
 if [ $# -ne 4 ]; then
   cat <<_EOT_
@@ -53,6 +53,6 @@ UPLOAD_PATH=$(curl -fsSL "https://app.vagrantup.com/api/v1/box/${VAGRANT_USERNAM
 echo '{ "upload_path": "'"${UPLOAD_PATH}"'" }'
 
 echo -e "\nUpload box: ${VAGRANT_USERNAME}/${BOX_NAME}\n"
-curl -X PUT --progress-bar --verbose --upload-file "${BOX_FILEPATH}" "${UPLOAD_PATH}"
+curl -X PUT --progress-bar --upload-file "${BOX_FILEPATH}" "${UPLOAD_PATH}"
 
 echo "Done!"
