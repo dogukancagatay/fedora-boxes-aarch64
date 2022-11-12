@@ -22,7 +22,7 @@ List of Vagrant boxes can be obtained from [https://app.vagrantup.com/dcagatay](
 To build a specific box, run the following:
 
 ```bash
-./build.sh <box-type>
+make <box-type>
 ```
 
 `<box-type` can be one of the following:
