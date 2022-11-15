@@ -29,6 +29,7 @@ make <box-type>
 
 - `fedora35`
 - `fedora36`
+- `fedora37`
 
 ## Changelog
 
@@ -46,6 +47,7 @@ make <box-type>
 
 - [Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)
 - [Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)
+- [Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)
 
 ## Testing/Running
 
