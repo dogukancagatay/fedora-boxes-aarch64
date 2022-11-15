@@ -17,10 +17,16 @@ export VERSION
 
 
 .PHONY: all
-all: fedora35 fedora36 fedora37b
 
 preflight:
 	mkdir -p "$(shell dirname $(PACKER_LOG_PATH))" output
+
+all: preflight
+	@echo "Building all"
+	packer build \
+		-force \
+		-on-error=$(PACKER_ON_ERROR) \
+		./templates
 
 build-box: preflight
 	@echo "Building $@"
