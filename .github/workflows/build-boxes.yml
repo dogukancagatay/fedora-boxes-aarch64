@@ -1,0 +1,66 @@
+name: ci
+on:
+  workflow_dispatch:
+  # push:
+  #   paths-ignore:
+  #     - ".editorconfig"
+  #     - ".gitignore"
+  #     - "docker-compose.yml"
+  #     - "go.mod"
+  #     - "go.sum"
+  #     - "LICENSE"
+  #     - "README.md"
+  #     - "repo-builder.go"
+  #   branches:
+  #     - ci
+
+jobs:
+  bake-latest:
+    runs-on: macos-12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # - name: Login to DockerHub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Install Parallels Desktop
+        run: |
+          echo "Will use Parallels Desktop: ${PARALLELS_DMG_URL}"
+          curl -fsSL -o /tmp/parallels.dmg "${PARALLELS_DMG_URL}"
+
+          PARALLELS_VERSION="$(echo ${PARALLELS_DMG_URL} | awk -F/ '{print $6}')"
+          PARALLELS_SHASUM="$(shasum -a 256 /tmp/parallels.dmg | awk '{print $1}')"
+          PARALLELS_FORMULA_FILE="$(find $(brew --repository) -name 'parallels.rb')"
+          sed -ie 's|version .*|version "'${PARALLELS_VERSION}'"|' "${PARALLELS_FORMULA_FILE}"
+          sed -ie 's|sha256 .*|sha256 "'${PARALLELS_SHASUM}'"|' "${PARALLELS_FORMULA_FILE}"
+
+          brew install --cask parallels
+        shell: bash
+
+      - name: Install dependencies
+        run: |
+          brew install --cask parallels-virtualization-sdk
+
+          # For Bugfix: https://forum.parallels.com/threads/failed-creating-parallels-driver-parallels-virtualization-sdk-is-not-installed.357040/#post-908788
+          PTH_FILE_SRC="$(find /Library/Frameworks/Python.framework -type f -name 'prlsdkapi.pth')"
+
+          # Find which python is liked to /usr/bin/python3 that packer uses
+          # https://github.com/hashicorp/packer-plugin-parallels/issues/36#issuecomment-1307306558
+          PTH_FILE_DEST_DIR=$(/usr/bin/python3 -c 'import sys;print([s for s in sys.path if "site-packages" in s][0])')
+          # Link prlsdkapi.pth
+          sudo ln -s "${PTH_FILE_SRC}" "${PTH_FILE_DEST_DIR}/prlsdkapi.pth"
+
+          brew install packer
+        shell: bash
+
+      - name: Build Images
+        run: |
+          packer init templates
+          make fedora35
+          make fedora36
+          make fedora37
+        shell: bash
