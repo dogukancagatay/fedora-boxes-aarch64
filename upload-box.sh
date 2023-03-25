@@ -32,7 +32,7 @@ curl \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${VAGRANT_ACCESS_TOKEN}" \
-  --data '{ "box": { "username": "'${VAGRANT_USERNAME}'", "name": "'${BOX_NAME}'" } }' \
+  --data '{ "box": { "username": "'${VAGRANT_USERNAME}'", "name": "'${BOX_NAME}'", "is_private": false } }' \
   "https://app.vagrantup.com/api/v1/boxes" || echo "Box already exists: ${BOX_NAME}"
 
 # Delete the version
@@ -65,3 +65,6 @@ echo -e "\nUpload box: ${VAGRANT_USERNAME}/${BOX_NAME}\n"
 curl -X PUT --progress-bar --upload-file "${BOX_FILEPATH}" "${UPLOAD_PATH}"
 
 echo "Done!"
+
+echo -e "\nVersion is not released yet. Release it from the link below.\n\n"
+echo -e "\thttps://app.vagrantup.com/${VAGRANT_USERNAME}/boxes/${BOX_NAME}/versions/${VERSION}/edit\n"
