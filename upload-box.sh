@@ -26,6 +26,15 @@ BOX_FILEPATH=$4
 BOX_CHECKSUM_TYPE="sha256"
 BOX_CHECKSUM=$(awk '{print $1}' "${BOX_FILEPATH}.${BOX_CHECKSUM_TYPE}")
 
+# Try to create the box
+echo -e "\nCreate box on Vagrant cloud: ${BOX_NAME}\n"
+curl \
+  --request POST \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${VAGRANT_ACCESS_TOKEN}" \
+  --data '{ "box": { "username": "'${VAGRANT_USERNAME}'", "name": "'${BOX_NAME}'" } }' \
+  "https://app.vagrantup.com/api/v1/boxes" || echo "Box already exists: ${BOX_NAME}"
+
 # Delete the version
 echo -e "\nDelete the version (${VERSION}) from Vagrant cloud\n"
 curl \
