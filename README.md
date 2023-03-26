@@ -7,7 +7,21 @@ For *X86_64* boxes you can check [here](https://app.vagrantup.com/generic).
 
 List of Vagrant boxes can be obtained from [https://app.vagrantup.com/dcagatay](https://app.vagrantup.com/dcagatay)
 
-## Building a Box
+## Running
+
+You can use the `Vagrantfile` at the repository root as an example, it will directly create VM from latest release of Fedora box.
+
+```sh
+vagrant up
+```
+
+SSH into the VM.
+
+```sh
+vagrant ssh
+```
+
+## Building Locally
 
 ### Prerequisites
 
@@ -23,7 +37,7 @@ Prerequisites for building the Vagrant box.
 
 To build a specific box, run the following:
 
-```bash
+```sh
 make <box-type>
 ```
 
@@ -62,25 +76,22 @@ There is a sample `Vagrantfile` included in the repository, but it is just for r
 
 Add to the box into your local Vagrant registry, and start the VM.
 
-```bash
-vagrant box add --force --name local/generic-fedora37-aarch64-parallels ./output/generic-fedora37-aarch64-parallels-0.0.5.box
-vagrant up
+```sh
+make import box=fedora37
+make run box=fedora37
 ```
 
-Or with some parameter wiggling.
+You can stop and remove the VM using the following command:
 
-```bash
-export BOX_VERSION="$(grep 'VERSION :=' Makefile | awk '{print $3}')"
-export BOX_LABEL="generic-fedora37-aarch64-parallels"
-vagrant box add --force --name local/${BOX_LABEL} ./output/${BOX_LABEL}-${BOX_VERSION}.box
-vagrant up
+```sh
+make destroy box=fedora37
 ```
 
 ## Uploading Box
 
 Example command:
 
-```bash
+```sh
 ./upload-box.sh fedora-37-aarch64 0.0.5 "Update parallels tools to 18.2.0" ./output/generic-fedora37-aarch64-parallels-0.0.5.box
 ```
 
