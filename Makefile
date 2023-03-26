@@ -36,5 +36,23 @@ build-box: preflight
 		-only="parallels-iso.generic-$(BOX_TYPE)-aarch64-parallels" \
 		./templates
 
+# usage: make import box=fedora37
+import:
+	$(eval BOX_LABEL := "generic-$(box)-aarch64-parallels")
+	vagrant box add --force \
+		--name local/$(BOX_LABEL) \
+		./output/$(BOX_LABEL)-$(VERSION).box
+
+# usage: make run box=fedora37
+run:
+	BOX_LABEL=generic-$(box)-aarch64-parallels \
+		vagrant up
+
+# usage: make destroy box=fedora37
+destroy:
+	BOX_LABEL=generic-$(box)-aarch64-parallels \
+		vagrant destroy -f
+
+# catchall
 %:
 	$(MAKE) build-box BOX_TYPE=$@

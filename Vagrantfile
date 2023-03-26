@@ -1,10 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-box = "local/#{ENV['BOX_LABEL'] || 'generic-fedora35-aarch64-parallels'}"
+box_label = "#{ENV['BOX_LABEL'] || 'fedora-37-aarch64'}"
+box_name = "#{ENV['BOX_LABEL'] ? 'local' : 'dcagatay'}/#{ENV['BOX_LABEL'] || 'fedora-37-aarch64'}"
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "#{box}"
+  config.vm.box = "#{box_name}"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -13,7 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "~/", "/media/psf/Home"
 
   config.vm.provider "parallels" do |prl|
-    prl.name = "generic-fedora35-aarch64-parallels"
+    prl.name = "#{box_label}"
     prl.update_guest_tools = false
     prl.memory = 2048
     prl.cpus = 2
