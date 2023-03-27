@@ -64,7 +64,10 @@ build {
   # could not parse template for following block: "template: hcl2_upgrade:9: unexpected \"\\\\\" in operand"
   post-processors {
     post-processor "shell-local" {
-      inline = ["prl_disk_tool merge --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd", "prl_disk_tool compact --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd"]
+      inline = [
+        "prl_disk_tool merge --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd",
+        "prl_disk_tool compact --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd"
+      ]
     }
     post-processor "vagrant" {
       keep_input_artifact  = false
