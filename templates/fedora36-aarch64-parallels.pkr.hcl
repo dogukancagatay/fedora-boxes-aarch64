@@ -7,7 +7,7 @@ source "parallels-iso" "generic-fedora36-aarch64-parallels" {
   iso_checksum               = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/aarch64/iso/Fedora-Server-36-1.5-aarch64-CHECKSUM"
   iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Server/aarch64/iso/Fedora-Server-netinst-aarch64-36-1.5.iso"
   boot_keygroup_interval     = "1s"
-  boot_wait                  = "20s"
+  boot_wait                  = "13s"
   boot_command               = [
     "<up>e<wait1><down><down><wait2><leftCtrlOn>e<leftCtrlOff> ",
     "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora36.vagrant.ks ",
