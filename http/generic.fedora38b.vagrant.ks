@@ -18,7 +18,7 @@ bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=
 url --url=https://dl.fedoraproject.org/pub/fedora/linux/development/38/Server/aarch64/os/
 # url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/os/
 # url --url=https://mirrors.edge.kernel.org/fedora/releases/38/Server/aarch64/os/
-# url --url=https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/38/Server/aarch64/os/
+# url --url=https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/38/Everything/aarch64/os/
 
 %packages
 net-tools
