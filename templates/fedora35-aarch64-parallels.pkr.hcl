@@ -4,8 +4,8 @@ source "parallels-iso" "generic-fedora35-aarch64-parallels" {
   cpus                       = 2
   memory                     = 2048
   disk_size                  = 32768
-  iso_checksum               = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/aarch64/iso/Fedora-Server-35-1.2-aarch64-CHECKSUM"
-  iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/releases/35/Server/aarch64/iso/Fedora-Server-netinst-aarch64-35-1.2.iso"
+  iso_checksum               = "file:https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/35/Server/aarch64/iso/Fedora-Server-35-1.2-aarch64-CHECKSUM"
+  iso_url                    = "https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/35/Server/aarch64/iso/Fedora-Server-netinst-aarch64-35-1.2.iso"
   boot_keygroup_interval     = "1s"
   boot_wait                  = "20s"
   boot_command               = [

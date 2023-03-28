@@ -11,6 +11,7 @@ build {
     scripts             = [
       "scripts/fedora/fixdns.sh",
       "scripts/fedora/hostname.sh",
+      "scripts/fedora/set-archive-repo.sh",
       "scripts/fedora/dnf.sh"
     ]
     start_retry_timeout = "45m"

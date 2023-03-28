@@ -52,7 +52,8 @@ make <box-type>
 
 - `0.0.5` *2023-03-25*
   - Parallels tools upgraded to 18.2.0
-  - Fedora 38 Beta version added to Vagrant Cloud
+  - F38b: Fedora 38 Beta version added to Vagrant Cloud
+  - F35: Updated repository addresses with archive URLs
 - `0.0.4`
   - Parallels tools upgraded to 18.1.0
 - `0.0.3`
