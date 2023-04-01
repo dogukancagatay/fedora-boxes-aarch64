@@ -6,9 +6,9 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+      [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput setaf 1
       echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
-      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+      [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput sgr0
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"
@@ -19,9 +19,9 @@ retry() {
   done
 
   [[ "${COUNT}" -gt 10 ]] && {
-    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+    [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput setaf 1
     echo -e "\nThe command failed 10 times.\n" >&2
-    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+    [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput sgr0
   }
 
   return "${RESULT}"
@@ -49,17 +49,20 @@ error() {
 }
 
 # Bail if we are not running atop VirtualBox.
-if [[ `dmidecode -s system-product-name` != "VirtualBox" ]]; then
-    exit 0
+if [[ $(dmidecode -s system-product-name) != "VirtualBox" ]]; then
+  exit 0
 fi
 
 # Install the Virtual Box Tools from the Linux Guest Additions ISO.
 printf "Installing the Virtual Box Tools.\n"
 
 # Read in the version number.
-VBOXVERSION=`cat /root/VBoxVersion.txt`
+# VBOXVERSION=$(cat /root/VBoxVersion.txt)
 
-retry dnf install --assumeyes virtualbox-guest-additions; error
+retry dnf install --assumeyes virtualbox-guest-additions
+error
 
-rm -rf /root/VBoxVersion.txt; error
-rm -rf /root/VBoxGuestAdditions.iso; error
+rm -rf /root/VBoxVersion.txt
+error
+rm -rf /root/VBoxGuestAdditions.iso
+error

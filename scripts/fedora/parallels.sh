@@ -6,9 +6,9 @@ retry() {
   local RESULT=0
   while [[ "${COUNT}" -le 10 ]]; do
     [[ "${RESULT}" -ne 0 ]] && {
-      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+      [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput setaf 1
       echo -e "\n${*} failed... retrying ${COUNT} of 10.\n" >&2
-      [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+      [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput sgr0
     }
     "${@}" && { RESULT=0 && break; } || RESULT="${?}"
     COUNT="$((COUNT + 1))"
@@ -19,9 +19,9 @@ retry() {
   done
 
   [[ "${COUNT}" -gt 10 ]] && {
-    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput setaf 1
+    [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput setaf 1
     echo -e "\nThe command failed 10 times.\n" >&2
-    [ "`which tput 2> /dev/null`" != "" ] && [ -n "$TERM" ] && tput sgr0
+    [ "$(which tput 2>/dev/null)" != "" ] && [ -n "$TERM" ] && tput sgr0
   }
 
   return "${RESULT}"
@@ -31,13 +31,13 @@ retry() {
 retry dnf install --assumeyes dmidecode patch tar
 
 # Bail if we are not running atop Parallels.
-if [[ `dmidecode -s system-product-name` != "Parallels Virtual Platform" ]] \
-  && [[ `dmidecode -s system-product-name` != "Parallels ARM Virtual Machine" ]]; then
-    exit 0
+if [[ $(dmidecode -s system-product-name) != "Parallels Virtual Platform" ]] &&
+  [[ $(dmidecode -s system-product-name) != "Parallels ARM Virtual Machine" ]]; then
+  exit 0
 fi
 
 # Read in the version number.
-PARALLELSVERSION=`cat /root/parallels-tools-version.txt`
+PARALLELSVERSION=$(cat /root/parallels-tools-version.txt)
 
 echo "Installing the Parallels tools, version $PARALLELSVERSION."
 
@@ -46,15 +46,15 @@ mount -o loop /root/parallels-tools-linux.iso /mnt/parallels/
 PTOOLS_DIR="/mnt/parallels"
 
 # if kernel version is >= 6.x apply patch
-if  [[ `uname -r` == 6.* ]] && [[ $PARALLELSVERSION == 18.0* ]]; then
-  echo "Will patch parallels-tools with 6.x patch for current kernel (`uname -r`)"
+if [[ $(uname -r) == 6.* ]] && [[ $PARALLELSVERSION == 18.0* ]]; then
+  echo "Will patch parallels-tools with 6.x patch for current kernel ($(uname -r))"
 
   PTOOLS_DIR="/tmp/parallels-tool"
   cp -r /mnt/parallels $PTOOLS_DIR
 
   mkdir -p $PTOOLS_DIR/prl_mod
   tar -xzf $PTOOLS_DIR/kmods/prl_mod.tar.gz -C $PTOOLS_DIR/prl_mod
-  tee <<EOF > $PTOOLS_DIR/prl_mod/parallels-tools-kernel-6.0.x.patch
+  tee <<EOF >$PTOOLS_DIR/prl_mod/parallels-tools-kernel-6.0.x.patch
 diff -puNr parallels-tools-18.0.2.53077.orig/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c parallels-tools-18.0.2.53077/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c
 --- parallels-tools-18.0.2.53077.orig/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c	2022-09-06 18:43:52.000000000 +0000
 +++ parallels-tools-18.0.2.53077/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c	2022-10-17 02:08:48.625690162 +0000
@@ -72,14 +72,19 @@ diff -puNr parallels-tools-18.0.2.53077.orig/prl_fs_freeze/Snapshot/Guest/Linux/
  }
 
 EOF
-  patch $PTOOLS_DIR/prl_mod/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c < $PTOOLS_DIR/prl_mod/parallels-tools-kernel-6.0.x.patch || echo "Patch failed not modifying"
+  patch $PTOOLS_DIR/prl_mod/prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.c <$PTOOLS_DIR/prl_mod/parallels-tools-kernel-6.0.x.patch || echo "Patch failed not modifying"
   mv $PTOOLS_DIR/kmods/prl_mod.tar.gz $PTOOLS_DIR/kmods/prl_mod.tar.gz.orig
-  cd $PTOOLS_DIR/prl_mod
+  cd $PTOOLS_DIR/prl_mod || exit
   tar -czf ../kmods/prl_mod.tar.gz .
 fi
 
-$PTOOLS_DIR/install --install-unattended-with-deps --verbose --progress \
-  || (status="$?" ; echo "Parallels tools installation failed. Error: $status" ; cat /var/log/parallels-tools-install.log ; exit $status)
+$PTOOLS_DIR/install --install-unattended-with-deps --verbose --progress ||
+  (
+    status="$?"
+    echo "Parallels tools installation failed. Error: $status"
+    cat /var/log/parallels-tools-install.log
+    exit $status
+  )
 
 umount /mnt/parallels/
 rm -rf /mnt/parallels $PTOOLS_DIR
