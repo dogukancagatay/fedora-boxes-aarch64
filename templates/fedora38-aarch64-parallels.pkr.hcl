@@ -1,16 +1,16 @@
-source "parallels-iso" "generic-fedora38b-aarch64-parallels" {
-  vm_name                    = "generic-fedora38b-aarch64-parallels"
-  output_directory           = "output/generic-fedora38b-aarch64-parallels"
+source "parallels-iso" "generic-fedora38-aarch64-parallels" {
+  vm_name                    = "generic-fedora38-aarch64-parallels"
+  output_directory           = "output/generic-fedora38-aarch64-parallels"
   cpus                       = 2
   memory                     = 2048
   disk_size                  = 32768
-  iso_checksum               = "file:https://dl.fedoraproject.org/pub/fedora/linux/development/38/Server/aarch64/iso/Fedora-Server-38-aarch64-20230324.n.0-CHECKSUM"
-  iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/development/38/Server/aarch64/iso/Fedora-Server-netinst-aarch64-38-20230324.n.0.iso"
+  iso_checksum               = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-38-1.6-aarch64-CHECKSUM"
+  iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-dvd-aarch64-38-1.6.iso"
   boot_keygroup_interval     = "1s"
   boot_wait                  = "13s"
   boot_command               = [
     "<up>e<wait1><down><down><wait2><leftCtrlOn>e<leftCtrlOff> ",
-    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38b.vagrant.ks ",
+    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38.vagrant.ks ",
     "<wait>biosdevname=0 ",
     "<wait>net.ifnames=0 ",
     "<wait><leftCtrlOn>x<leftCtrlOff>"

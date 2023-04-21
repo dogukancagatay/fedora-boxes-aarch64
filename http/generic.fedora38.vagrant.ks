@@ -15,8 +15,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora37.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 # When this release is no longer available from mirrors, enable the archive url.
-url --url=https://dl.fedoraproject.org/pub/fedora/linux/development/38/Server/aarch64/os/
-# url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/os/
+url --url=https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/os/
 # url --url=https://mirrors.edge.kernel.org/fedora/releases/38/Server/aarch64/os/
 # url --url=https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/38/Everything/aarch64/os/
 

@@ -43,17 +43,18 @@ make <box-type>
 
 `<box-type` can be one of the following:
 
-- `fedora38b` (*Beta*)
+- `fedora38`
 - `fedora37`
-- `fedora36`
+- `fedora36` (*EOL*)
 - `fedora35` (*EOL*)
 
 ## Changelog
 
 - `0.0.5` *2023-03-25*
+  - Fedora 38 added to Vagrant Cloud (*2023-04-20*)
+  - Fedora 38 Beta version added to Vagrant Cloud
+  - Updated Fedora 35 repository addresses with archive URLs
   - Parallels tools upgraded to 18.2.0
-  - F38b: Fedora 38 Beta version added to Vagrant Cloud
-  - F35: Updated repository addresses with archive URLs
 - `0.0.4`
   - Parallels tools upgraded to 18.1.0
 - `0.0.3`
@@ -66,7 +67,7 @@ make <box-type>
 
 ## Vagrant Cloud URLs
 
-- [Fedora 38 Beta](https://app.vagrantup.com/dcagatay/boxes/fedora-38b-aarch64)
+- [Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)
 - [Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)
 - [Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)
 - [Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)
@@ -78,14 +79,14 @@ There is a sample `Vagrantfile` included in the repository, but it is just for r
 Add to the box into your local Vagrant registry, and start the VM.
 
 ```sh
-make import box=fedora37
-make run box=fedora37
+make box=fedora37 import
+make box=fedora37 run
 ```
 
 You can stop and remove the VM using the following command:
 
 ```sh
-make destroy box=fedora37
+make box=fedora37 destroy
 ```
 
 ## Uploading Box
