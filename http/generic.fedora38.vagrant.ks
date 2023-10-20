@@ -11,7 +11,7 @@ clearpart --all --drives=sda --initlabel
 autopart --noswap --type=plain --fstype=xfs
 
 firewall --enabled --service=ssh
-network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora37.localdomain
+network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora38.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 # When this release is no longer available from mirrors, enable the archive url.
