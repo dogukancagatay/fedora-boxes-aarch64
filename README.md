@@ -38,7 +38,11 @@ Prerequisites for building the Vagrant box.
 To build a specific box, run the following:
 
 ```sh
-make <box-type>
+# Install packer plugins
+make init
+# Build box
+# e.g. make box=fedora37 build-box
+make box=<box-type> build-box
 ```
 
 `<box-type` can be one of the following:
@@ -105,7 +109,7 @@ If you get the error in the title after installing the Parallels Virtualization 
 
 You can resolve the issue by creating a symlink from Python 3.7 site packages to your recent version of Python.
 
-First find out which syspaths of your `python3`.
+First, find out syspath of your `python3`.
 
 ```sh
 /usr/bin/python3 -m site

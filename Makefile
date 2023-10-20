@@ -28,6 +28,11 @@ all: preflight
 preflight:
 	mkdir -p "$(shell dirname $(PACKER_LOG_PATH))" output
 
+# usage: make box=fedora37 init
+init: preflight
+	@echo "Initialize $@"
+	packer init -upgrade ./templates
+
 # usage: make build-box box=fedora37
 build-box: preflight
 	$(eval BOX_LABEL := "generic-$(box)-aarch64-parallels")
