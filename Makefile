@@ -16,10 +16,7 @@ export PACKER_LOG_PATH
 export VERSION
 
 
-.PHONY: all
-
-preflight:
-	mkdir -p "$(shell dirname $(PACKER_LOG_PATH))" output
+.PHONY: all init build-box import run destroy
 
 all: preflight
 	@echo "Building all"
@@ -28,12 +25,17 @@ all: preflight
 		-on-error=$(PACKER_ON_ERROR) \
 		./templates
 
+preflight:
+	mkdir -p "$(shell dirname $(PACKER_LOG_PATH))" output
+
+# usage: make build-box box=fedora37
 build-box: preflight
-	@echo "Building $@"
+	$(eval BOX_LABEL := "generic-$(box)-aarch64-parallels")
+	@echo "Building $@ ($(BOX_LABEL))"
 	packer build \
 		-force \
 		-on-error=$(PACKER_ON_ERROR) \
-		-only="parallels-iso.generic-$(BOX_TYPE)-aarch64-parallels" \
+		-only="parallels-iso.$(BOX_LABEL)" \
 		./templates
 
 # usage: make import box=fedora37
@@ -54,5 +56,5 @@ destroy:
 		vagrant destroy -f
 
 # catchall
-%:
-	$(MAKE) build-box BOX_TYPE=$@
+# %:
+# 	$(MAKE) build-box BOX_LABEL=$@
