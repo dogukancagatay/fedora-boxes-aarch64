@@ -29,7 +29,7 @@ Prerequisites for building the Vagrant box.
 
 - Packer (`brew install packer`)
 - Parallels Desktop (`brew install --cask parallels`)
-- Parallels Virtualization SDK (`brew install --cask parallels-virtualization-sdkbrew install --cask parallels-virtualization-sdk`)
+- Parallels Virtualization SDK (`brew install --cask parallels-virtualization-sdk`)
 - Vagrant (`brew install --cask vagrant`) *For testing*
   - Vagrant Parallels Plugin (`vagrant plugin install vagrant-parallels`)
 
@@ -47,6 +47,7 @@ make box=<box-type> build-box
 
 `<box-type` can be one of the following:
 
+- `fedora39b`
 - `fedora38`
 - `fedora37`
 - `fedora36` (*EOL*)
@@ -54,6 +55,10 @@ make box=<box-type> build-box
 
 ## Changelog
 
+- `0.0.6` *2023-10-20*
+  - Parallels tools upgraded to 19.1.0
+  - File system changed from XFS to BTRFS
+  - Fedora 39b build added to Vagrant Cloud (*2023-10-20*)
 - `0.0.5` *2023-03-25*
   - Fedora 38 added to Vagrant Cloud (*2023-04-20*)
   - Fedora 38 Beta version added to Vagrant Cloud
@@ -71,6 +76,7 @@ make box=<box-type> build-box
 
 ## Vagrant Cloud URLs
 
+- [Fedora 39b](https://app.vagrantup.com/dcagatay/boxes/fedora-39b-aarch64)
 - [Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)
 - [Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)
 - [Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)

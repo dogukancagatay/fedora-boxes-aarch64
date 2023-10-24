@@ -4,6 +4,7 @@ build {
     "source.parallels-iso.generic-fedora36-aarch64-parallels",
     "source.parallels-iso.generic-fedora37-aarch64-parallels",
     "source.parallels-iso.generic-fedora38-aarch64-parallels",
+    "source.parallels-iso.generic-fedora39b-aarch64-parallels",
   ]
 
   provisioner "shell" {
