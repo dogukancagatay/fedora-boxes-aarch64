@@ -16,7 +16,7 @@ export PACKER_LOG_PATH
 export VERSION
 
 
-.PHONY: all init build-box import run destroy
+.PHONY: all init build-box import run destroy vm-info
 
 all: preflight
 	@echo "Building all"
@@ -59,6 +59,11 @@ run:
 destroy:
 	BOX_LABEL=generic-$(box)-aarch64-parallels \
 		vagrant destroy -f
+
+# usage: make box=fedora37 vm-info
+vm-info:
+	BOX_LABEL=generic-$(box)-aarch64-parallels \
+		vagrant ssh -c 'cat /etc/fedora-release; uname -srmv; prltoolsd -V'
 
 # catchall
 # %:
