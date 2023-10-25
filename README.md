@@ -58,7 +58,11 @@ make box=<box-type> build-box
 - `0.0.6` *2023-10-20*
   - Parallels tools upgraded to 19.1.0
   - File system changed from XFS to BTRFS
+  - Removed unused HyperV specific kickstart config
+  - Removed bfq scheduler config
   - Fedora 39b build added to Vagrant Cloud (*2023-10-20*)
+  - Fedora 38 build updated (*2023-10-24*)
+  - Fedora 37 build updated (*2023-10-24*)
 - `0.0.5` *2023-03-25*
   - Fedora 38 added to Vagrant Cloud (*2023-04-20*)
   - Fedora 38 Beta version added to Vagrant Cloud

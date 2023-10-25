@@ -5,7 +5,7 @@ source "parallels-iso" "generic-fedora38-aarch64-parallels" {
   memory                     = 2048
   disk_size                  = 32768
   iso_checksum               = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-38-1.6-aarch64-CHECKSUM"
-  iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-dvd-aarch64-38-1.6.iso"
+  iso_url                    = "https://dl.fedoraproject.org/pub/fedora/linux/releases/38/Server/aarch64/iso/Fedora-Server-netinst-aarch64-38-1.6.iso"
   boot_keygroup_interval     = "1s"
   boot_wait                  = "13s"
   boot_command               = [
