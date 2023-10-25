@@ -3,58 +3,42 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.boot_timeout = 1800
-  config.vm.synced_folder ".", "/vagrant", disabled: true
-
   config.vm.box_check_update = true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  # config.vm.synced_folder "~/", "/media/psf/Home"
 
-  # config.vm.post_up_message = ""
-  config.vm.boot_timeout = 1800
-  # config.vm.box_download_checksum = true
-  config.vm.boot_timeout = 1800
-  # config.vm.box_download_checksum_type = "sha256"
-
-  # config.vm.provision "shell", run: "always", inline: <<-SHELL
-  # SHELL
-
-  # Adding a second CPU and increasing the RAM to 2048MB will speed
-  # things up considerably should you decide to do anythinc with this box.
-  config.vm.provider :hyperv do |v, override|
-    v.maxmemory = 2048
-    v.memory = 2048
-    v.cpus = 2
-  end
-
-  config.vm.provider :libvirt do |v, override|
-    v.disk_bus = "virtio"
-    v.driver = "kvm"
-    v.video_vram = 256
-    v.memory = 2048
-    v.cpus = 2
-  end
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  # config.vm.network "private_network", ip: "192.168.33.10"
 
   config.vm.provider :parallels do |v, override|
+    v.memory = 2048
+    v.cpus = 2
+
+    # Set disk size
+    v.customize "post-import", ["set", :id, "--device-set", "hdd0", "--no-fs-resize", "--size", "50000"]
+
+    v.linked_clone = false
+    v.update_guest_tools = false
     v.customize ["set", :id, "--on-window-close", "keep-running"]
     v.customize ["set", :id, "--startup-view", "headless"]
-    v.customize ["set", :id, "--memsize", "2048"]
-    v.customize ["set", :id, "--cpus", "2"]
+    v.customize ["set", :id, "--pmu-virt", "on"]
+    v.customize ["set", :id, "--faster-vm", "on"]
+    v.customize ["set", :id, "--resource-quota", "unlimited"]
+    v.customize ["set", :id, "--time-sync", "on"]
+    # v.customize ["set", :id, "--shared-clipboard", "off"]
+    # v.customize ["set", :id, "--sync-host-printers", "off"]
   end
 
-  config.vm.provider :virtualbox do |v, override|
-    v.customize ["modifyvm", :id, "--memory", 2048]
-    v.customize ["modifyvm", :id, "--vram", 256]
-    v.customize ["modifyvm", :id, "--cpus", 2]
-    v.gui = false
-  end
+  config.vm.provision "shell", inline: <<-SHELL
+    # Upgrading kernel might break parallels-tools kernel modules
+    # dnf upgrade -y
 
-  ["vmware_fusion", "vmware_workstation", "vmware_desktop"].each do |provider|
-    config.vm.provider provider do |v, override|
-      v.whitelist_verified = true
-      v.gui = false
-      v.vmx["cpuid.coresPerSocket"] = "1"
-      v.vmx["memsize"] = "2048"
-      v.vmx["numvcpus"] = "2"
-    end
-  end
+    # Resize root fs
+    # dnf install cloud-utils-growpart -y
+    growpart /dev/sda 3
+    # xfs_growfs /
+    btrfs filesystem resize max /
+  SHELL
 
 end
