@@ -55,6 +55,13 @@ make box=<box-type> build-box
 
 ## Changelog
 
+- `0.0.7` *2023-10-31*
+  - Updated Fedora 37 and 38 kernel to 6.5.8
+  - Updated Vagrantfile templates attached to the built boxes
+  - Fixed hostname setting
+  - Fedora 39b build updated on Vagrant Cloud (*2023-10-31*)
+  - Fedora 38 build updated on Vagrant Cloud (*2023-10-31*)
+  - Fedora 37 build updated on Vagrant Cloud (*2023-10-31*)
 - `0.0.6` *2023-10-20*
   - Parallels tools upgraded to 19.1.0
   - File system changed from XFS to BTRFS
