@@ -47,9 +47,9 @@ make box=<box-type> build-box
 
 `<box-type` can be one of the following:
 
-- `fedora39b`
-- `fedora38`
-- `fedora37`
+- `fedora39b` ([Release schedule](https://fedorapeople.org/groups/schedule/f-39/f-39-key-tasks.html))
+- `fedora38` ([Release schedule](https://fedorapeople.org/groups/schedule/f-38/f-38-key-tasks.html))
+- `fedora37` ([*EOL on 2022-12-13*](https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html))
 - `fedora36` (*EOL*)
 - `fedora35` (*EOL*)
 
