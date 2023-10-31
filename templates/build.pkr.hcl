@@ -11,7 +11,7 @@ build {
     expect_disconnect   = "true"
     scripts             = [
       "scripts/fedora/fixdns.sh",
-      "scripts/fedora/hostname.sh",
+      # "scripts/fedora/hostname.sh",
       "scripts/fedora/set-archive-repo.sh",
       "scripts/fedora/dnf.sh"
     ]
@@ -36,10 +36,10 @@ build {
     scripts             = [
       "scripts/fedora/kernel.sh",
       "scripts/fedora/vga.sh",
-      "scripts/fedora/virtualbox.sh",
+      # "scripts/fedora/virtualbox.sh",
       "scripts/fedora/parallels.sh",
-      "scripts/fedora/vmware.sh",
-      "scripts/fedora/qemu.sh",
+      # "scripts/fedora/vmware.sh",
+      # "scripts/fedora/qemu.sh",
       "scripts/fedora/vagrant.sh",
       "scripts/fedora/tuning.sh",
       "scripts/fedora/cleanup.sh"]
@@ -63,7 +63,7 @@ build {
   }
 
 
-  # could not parse template for following block: "template: hcl2_upgrade:9: unexpected \"\\\\\" in operand"
+  # Merge and compact VM disks (workaround for running Parallels VMs with Vagrant)
   post-processors {
     post-processor "shell-local" {
       inline = [
@@ -71,6 +71,7 @@ build {
         "prl_disk_tool compact --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd"
       ]
     }
+    # Output Vagrant box
     post-processor "vagrant" {
       keep_input_artifact  = false
       compression_level    = 9
@@ -78,6 +79,7 @@ build {
       output               = "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-${var.box_version}.box"
       vagrantfile_template = "tpl/generic-{{split build_name \"-\" 1}}.rb"
     }
+    # Output box checksum file
     post-processor "checksum" {
       keep_input_artifact = false
       checksum_types      = ["sha256"]
