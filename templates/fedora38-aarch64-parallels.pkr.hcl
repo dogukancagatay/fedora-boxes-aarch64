@@ -11,6 +11,7 @@ source "parallels-iso" "generic-fedora38-aarch64-parallels" {
   boot_command               = [
     "<up>e<wait1><down><down><wait2><leftCtrlOn>e<leftCtrlOff> ",
     "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora38.vagrant.ks ",
+    "<wait>inst.text ",
     "<wait>biosdevname=0 ",
     "<wait>net.ifnames=0 ",
     "<wait><leftCtrlOn>x<leftCtrlOff>"
