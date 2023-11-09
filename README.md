@@ -47,7 +47,7 @@ make box=<box-type> build-box
 
 `<box-type` can be one of the following:
 
-- `fedora39b` ([Release schedule](https://fedorapeople.org/groups/schedule/f-39/f-39-key-tasks.html))
+- `fedora39` ([Release schedule](https://fedorapeople.org/groups/schedule/f-39/f-39-key-tasks.html))
 - `fedora38` ([Release schedule](https://fedorapeople.org/groups/schedule/f-38/f-38-key-tasks.html))
 - `fedora37` ([*EOL on 2022-12-13*](https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html))
 - `fedora36` (*EOL*)
@@ -62,6 +62,7 @@ make box=<box-type> build-box
   - Fedora 39b build updated on Vagrant Cloud (*2023-10-31*)
   - Fedora 38 build updated on Vagrant Cloud (*2023-10-31*)
   - Fedora 37 build updated on Vagrant Cloud (*2023-10-31*)
+  - Fedora 39 build added to the Vagrant Cloud (*2023-11-09*)
 - `0.0.6` *2023-10-20*
   - Parallels tools upgraded to 19.1.0
   - File system changed from XFS to BTRFS
