@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-box_label = "#{ENV['BOX_LABEL'] || 'fedora-38-aarch64'}"
+box_label = "#{ENV['BOX_LABEL'] || 'fedora-39-aarch64'}"
 box_name = "#{ENV['BOX_LABEL'] ? 'local' : 'dcagatay'}/#{box_label}"
 
 Vagrant.configure("2") do |config|

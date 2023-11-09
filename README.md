@@ -1,17 +1,28 @@
 
 # Fedora Parallels Vagrant Boxes for Mac aarch64 (arm64)
 
-Generic base Fedora boxes, providing Vagrant boxes for arm64/aarch64 Macs with Parallels Provider.
+Generic Fedora Vagrant boxes for arm64/aarch64 Macs with Parallels Provider.
 
 For *X86_64* boxes you can check [here](https://app.vagrantup.com/generic).
 
-List of Vagrant boxes can be obtained from [https://app.vagrantup.com/dcagatay](https://app.vagrantup.com/dcagatay)
+The *maintained/updated* Fedora versions is listed below. The box version indicates the configuration version.
+
+The full list can be obtained from [https://app.vagrantup.com/dcagatay](https://app.vagrantup.com/dcagatay)
+
+## Vagrant Boxes
+
+- [Fedora 39](https://app.vagrantup.com/dcagatay/boxes/fedora-39-aarch64)
+- [Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)
+- [Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)
+- ~~[Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)~~
+- ~~[Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)~~
 
 ## Running
 
-You can use the `Vagrantfile` at the repository root as an example, it will directly create VM from latest release of Fedora box.
+Initialize a Vagrantfile and start your VM.
 
 ```sh
+vagrant init dcagatay/fedora-39-aarch64
 vagrant up
 ```
 
@@ -21,7 +32,40 @@ SSH into the VM.
 vagrant ssh
 ```
 
-## Building Locally
+## Changelog
+
+- `0.0.7` *2023-10-31*
+  - Fedora 39 (Kernel 6.5.10 and Parallels Tools 19.1.0) build added to the Vagrant Cloud (*2023-11-09*)
+  - Updated Fedora 37 and 38 kernel to 6.5.8
+  - Updated Vagrantfile templates attached to the built boxes
+  - Fixed hostname setting
+  - Fedora 39b build updated on Vagrant Cloud (*2023-10-31*)
+  - Fedora 38 build updated on Vagrant Cloud (*2023-10-31*)
+  - Fedora 37 build updated on Vagrant Cloud (*2023-10-31*)
+- `0.0.6` *2023-10-20*
+  - Parallels tools upgraded to 19.1.0
+  - File system changed from XFS to BTRFS
+  - Removed unused HyperV specific kickstart config
+  - Removed bfq scheduler config
+  - Fedora 39b build added to Vagrant Cloud (*2023-10-20*)
+  - Fedora 38 build updated (*2023-10-24*)
+  - Fedora 37 build updated (*2023-10-24*)
+- `0.0.5` *2023-03-25*
+  - Fedora 38 added to Vagrant Cloud (*2023-04-20*)
+  - Fedora 38 Beta version added to Vagrant Cloud
+  - Updated Fedora 35 repository addresses with archive URLs
+  - Parallels tools upgraded to 18.2.0
+- `0.0.4`
+  - Parallels tools upgraded to 18.1.0
+- `0.0.3`
+  - Some script rearrangements.
+- `0.0.2`
+  - Fixed Parallels virtual disk snapshot compaction/merger issue.
+  - Add `cloud-utils-growpart` package.
+- `0.0.1`
+  - Initial alpha release.
+
+## Building Vagrant Box
 
 ### Prerequisites
 
@@ -53,47 +97,6 @@ make box=<box-type> build-box
 - `fedora36` (*EOL*)
 - `fedora35` (*EOL*)
 
-## Changelog
-
-- `0.0.7` *2023-10-31*
-  - Updated Fedora 37 and 38 kernel to 6.5.8
-  - Updated Vagrantfile templates attached to the built boxes
-  - Fixed hostname setting
-  - Fedora 39b build updated on Vagrant Cloud (*2023-10-31*)
-  - Fedora 38 build updated on Vagrant Cloud (*2023-10-31*)
-  - Fedora 37 build updated on Vagrant Cloud (*2023-10-31*)
-  - Fedora 39 build added to the Vagrant Cloud (*2023-11-09*)
-- `0.0.6` *2023-10-20*
-  - Parallels tools upgraded to 19.1.0
-  - File system changed from XFS to BTRFS
-  - Removed unused HyperV specific kickstart config
-  - Removed bfq scheduler config
-  - Fedora 39b build added to Vagrant Cloud (*2023-10-20*)
-  - Fedora 38 build updated (*2023-10-24*)
-  - Fedora 37 build updated (*2023-10-24*)
-- `0.0.5` *2023-03-25*
-  - Fedora 38 added to Vagrant Cloud (*2023-04-20*)
-  - Fedora 38 Beta version added to Vagrant Cloud
-  - Updated Fedora 35 repository addresses with archive URLs
-  - Parallels tools upgraded to 18.2.0
-- `0.0.4`
-  - Parallels tools upgraded to 18.1.0
-- `0.0.3`
-  - Some script rearrangements.
-- `0.0.2`
-  - Fixed Parallels virtual disk snapshot compaction/merger issue.
-  - Add `cloud-utils-growpart` package.
-- `0.0.1`
-  - Initial alpha release.
-
-## Vagrant Cloud URLs
-
-- [Fedora 39b](https://app.vagrantup.com/dcagatay/boxes/fedora-39b-aarch64)
-- [Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)
-- [Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)
-- [Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)
-- [Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)
-
 ## Testing
 
 There is a sample `Vagrantfile` included in the repository, but it is just for reference and meant to be used for local tests.
@@ -103,6 +106,7 @@ Add to the box into your local Vagrant registry, and start the VM.
 ```sh
 make box=fedora37 import
 make box=fedora37 run
+make box=fedora37 vm-info
 ```
 
 You can stop and remove the VM using the following command:
@@ -121,7 +125,7 @@ Example command:
 
 ## Troubleshooting
 
-### Error: `Failed creating Parallels driver: Parallels Virtualization SDK is not installed`
+### Error: `Failed creating Parallels driver: Parallels Virtualization SDK is not installed` (*Fixed*)
 
 If you get the error in the title after installing the Parallels Virtualization SDK, you hit the bug explained [here](https://github.com/hashicorp/packer-plugin-parallels/issues/36).
 
