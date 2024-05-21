@@ -37,7 +37,6 @@ Vagrant.configure("2") do |config|
     # Resize root fs
     # dnf install cloud-utils-growpart -y
     growpart /dev/sda 3
-    # xfs_growfs /
     btrfs filesystem resize max /
   SHELL
 
