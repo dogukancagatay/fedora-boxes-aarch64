@@ -5,7 +5,7 @@ PACKER_LOG := 1
 PACKER_LOG_PATH := ./logs/generic-parallels-log-$(shell date +'%Y%m%d.%H.%M.%S').log
 
 ifndef VERSION
-	VERSION := 0.0.7
+	VERSION := 0.0.8
 endif
 
 export PACKER_ON_ERROR
