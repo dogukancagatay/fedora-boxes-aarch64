@@ -86,14 +86,19 @@ build {
       keep_input_artifact  = false
       compression_level    = 9
       include              = ["tpl/generic/info.json"]
-      output               = "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-${var.box_version}.box"
-      vagrantfile_template = "tpl/generic-{{split build_name \"-\" 1}}.rb"
+      output               = "output/${local.box_file_name}"
+      vagrantfile_template = "tpl/generic-${local.box_slug}.rb"
+    }
+    # Remove previous checksum file
+    post-processor "shell-local" {
+      inline = [
+        "rm -rf output/${local.box_file_name}.sha256"
+      ]
     }
     # Output box checksum file
     post-processor "checksum" {
-      keep_input_artifact = false
       checksum_types      = ["sha256"]
-      output              = "output/generic-{{split build_name \"-\" 1}}-{{split build_name \"-\" 2}}-{{split build_name \"-\" 3}}-${var.box_version}.box.sha256"
+      output              = "output/${local.box_file_name}.sha256"
     }
   }
 }
