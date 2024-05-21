@@ -1,4 +1,3 @@
-
 # Credential Files
 .credentialsrc
 .credentials.bat
@@ -25,3 +24,6 @@ res/providers/VMware-Workstation-Full-12.5.9-7535481.x86_64.bundle
 
 .vscode/
 .vagrant/
+
+# Temporary files
+tpl/generic/info.json

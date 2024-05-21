@@ -71,6 +71,15 @@ build {
         "prl_disk_tool compact --hdd output/{{build_name}}/{{build_name}}.pvm/harddisk1.hdd"
       ]
     }
+    # Populate info file
+    post-processor "shell-local" {
+      env = {
+        BOX_VERSION="${var.box_version}"
+      }
+      inline = [
+        "envsubst < tpl/generic/info.json.template > tpl/generic/info.json"
+      ]
+    }
     # Output Vagrant box
     post-processor "vagrant" {
       keep_input_artifact  = false
