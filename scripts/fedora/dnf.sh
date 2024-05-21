@@ -53,8 +53,6 @@ sysctl net.ipv6.conf.all.disable_ipv6=1
 # Needed to retrieve source code, and other misc system tools.
 echo "Install some utility/requirement packages"
 retry dnf install --assumeyes \
-  vim \
-  wget \
   curl \
   tar \
   cloud-utils-growpart
