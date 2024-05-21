@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-FEDORA_EOL_VERSIONS='34 35';
+FEDORA_EOL_VERSIONS='34 35 36 37 38';
 FEDORA_VERSION="$(cat /etc/fedora-release | awk '{print $3}')"
 
 if [[ $FEDORA_EOL_VERSIONS =~ (^|[[:space:]])$FEDORA_VERSION($|[[:space:]]) ]]; then
