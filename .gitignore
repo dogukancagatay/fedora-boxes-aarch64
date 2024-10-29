@@ -10,6 +10,7 @@ run2.bat
 logs/
 output/
 packer_cache/
+image_cache/
 
 # Eclipse Files
 .project

@@ -10,6 +10,7 @@ You can access all available versions on [https://app.vagrantup.com/dcagatay](ht
 
 ## Vagrant Boxes
 
+- [Fedora 41b](https://app.vagrantup.com/dcagatay/boxes/fedora-41b-aarch64)
 - [Fedora 40](https://app.vagrantup.com/dcagatay/boxes/fedora-40-aarch64)
 - [Fedora 39](https://app.vagrantup.com/dcagatay/boxes/fedora-39-aarch64)
 - ~~[Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)~~
@@ -34,6 +35,10 @@ vagrant ssh
 
 ## Changelog
 
+- `0.0.9` _2024-10-23_
+  - Add Fedora 41 BETA box with kernel `6.11.5` and Parallels Tools `20.1.55732`.
+  - Update Fedora 40 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
+  - Update Fedora 39 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
 - `0.0.8` _2024-05-21_
   - Remove optional packages _vim_ and _wget_ from the installed packages.
   - Add Fedora 38 to the EOL list.
@@ -76,7 +81,7 @@ vagrant ssh
 
 The prerequisites to build the Vagrant box.
 
-- Packer (`brew install packer`)
+- Packer (`brew tap hashicorp/tap && brew install hashicorp/tap/packer`)
 - Parallels Desktop (`brew install --cask parallels`)
 - Parallels Virtualization SDK (`brew install --cask parallels-virtualization-sdk`)
 - Vagrant (`brew install --cask vagrant`) _For testing_
@@ -96,8 +101,9 @@ make box=<box-type> build-box
 
 `<box-type` can be one of the following:
 
+- `fedora41` ([Release schedule](https://fedorapeople.org/groups/schedule/f-41/f-41-key-tasks.html))
 - `fedora40` ([Release schedule](https://fedorapeople.org/groups/schedule/f-40/f-40-key-tasks.html))
-- `fedora39` ([Release schedule](https://fedorapeople.org/groups/schedule/f-39/f-39-key-tasks.html))
+- `fedora39` ([_EOL on 2023-11-12_](https://fedorapeople.org/groups/schedule/f-39/f-39-key-tasks.html))
 - `fedora38` ([_EOL on 2023-05-21_](https://fedorapeople.org/groups/schedule/f-38/f-38-key-tasks.html))
 - `fedora37` ([_EOL on 2022-12-13_](https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html))
 - `fedora36` (_EOL_)
