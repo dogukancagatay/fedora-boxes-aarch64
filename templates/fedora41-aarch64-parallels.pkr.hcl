@@ -1,16 +1,16 @@
-source "parallels-iso" "generic-fedora41b-aarch64-parallels" {
-  vm_name                = "generic-fedora41b-aarch64-parallels"
-  output_directory       = "output/generic-fedora41b-aarch64-parallels"
+source "parallels-iso" "generic-fedora41-aarch64-parallels" {
+  vm_name                = "generic-fedora41-aarch64-parallels"
+  output_directory       = "output/generic-fedora41-aarch64-parallels"
   cpus                   = 2
   memory                 = 2048
   disk_size              = 32768
-  iso_checksum           = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/test/41_Beta/Server/aarch64/iso/Fedora-Server-iso-41_Beta-1.2-aarch64-CHECKSUM"
-  iso_url                = "https://download.fedoraproject.org/pub/fedora/linux/releases/test/41_Beta/Server/aarch64/iso/Fedora-Server-netinst-aarch64-41_Beta-1.2.iso"
+  iso_checksum           = "file:https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Server/aarch64/iso/Fedora-Server-41-1.4-aarch64-CHECKSUM"
+  iso_url                = "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Server/aarch64/iso/Fedora-Server-netinst-aarch64-41-1.4.iso"
   boot_keygroup_interval = "1s"
   boot_wait              = "10s"
   boot_command = [
     "<up>e<wait1><down><down><wait2><leftCtrlOn>e<leftCtrlOff> ",
-    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora41b.vagrant.ks ",
+    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora41.vagrant.ks ",
     "<wait>inst.text ",
     "<wait>biosdevname=0 ",
     "<wait>net.ifnames=0 ",

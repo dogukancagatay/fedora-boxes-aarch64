@@ -15,7 +15,7 @@ network --device eth0 --bootproto dhcp --noipv6 --hostname=fedora40.localdomain
 bootloader --timeout=1 --append="net.ifnames=0 biosdevname=0 no_timer_check vga=792 nomodeset text"
 
 # When this release is no longer available from mirrors, enable the archive url.
-# url --url=https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/40/Everything/aarch64/os/
+# url --url=https://dl.fedoraproject.org/pub/archive/fedora/linux/releases/41/Everything/aarch64/os/
 
 %packages
 net-tools
