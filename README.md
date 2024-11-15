@@ -2,21 +2,21 @@
 # Fedora Parallels Vagrant Boxes for Mac aarch64 (arm64)
 
 Generic Fedora Vagrant boxes for arm64/aarch64 Macs with Parallels Provider.
-For _X86_64_ boxes, you can check [here](https://app.vagrantup.com/generic).
+For _X86_64_ boxes, you can check [here](https://portal.cloud.hashicorp.com/vagrant/discover/generic).
 
 The _maintained/updated_ Fedora versions are listed below. The box version indicates the configuration version.
 
-You can access all available versions on [https://app.vagrantup.com/dcagatay](https://app.vagrantup.com/dcagatay)
-
 ## Vagrant Boxes
 
-- [Fedora 41](https://app.vagrantup.com/dcagatay/boxes/fedora-41-aarch64)
-- [Fedora 40](https://app.vagrantup.com/dcagatay/boxes/fedora-40-aarch64)
-- [Fedora 39](https://app.vagrantup.com/dcagatay/boxes/fedora-39-aarch64)
-- ~~[Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)~~
-- ~~[Fedora 37](https://app.vagrantup.com/dcagatay/boxes/fedora-37-aarch64)~~
-- ~~[Fedora 36](https://app.vagrantup.com/dcagatay/boxes/fedora-36-aarch64)~~
-- ~~[Fedora 35](https://app.vagrantup.com/dcagatay/boxes/fedora-35-aarch64)~~
+| Box Name                | Version | Kernel Version | Parallels Tools Version | Update Time | Status |
+|-------------------------|---------|----------------|-------------------------|-------------|--------|
+| [fedora-41-aarch64]     | `0.0.9` | `6.11.7`       | `20.1.55732`            | 2024-11-30  | Active |
+| [fedora-40-aarch64]     | `0.0.9` | `6.11.4`       | `20.1.55732`            | 2024-10-23  | Active |
+| ~~[fedora-39-aarch64]~~ | `0.0.9` | `6.11.4`       | `20.1.55732`            | 2024-10-23  | _EOL_  |
+| ~~[fedora-38-aarch64]~~ | `0.0.7` | `6.5.8`        | `19.1.54729`            | 2023-10-31  | _EOL_  |
+| ~~[fedora-37-aarch64]~~ | `0.0.7` | `6.5.8`        | `19.1.54729`            | 2023-10-31  | _EOL_  |
+
+You can check all image versions from [https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay](https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay)
 
 ## Running
 
@@ -32,52 +32,6 @@ SSH into the VM.
 ```sh
 vagrant ssh
 ```
-
-## Changelog
-
-- `0.0.9`
-  - _2024-10-30_
-    - Remove Fedora 41 BETA box
-    - Add Fedora 41 box with kernel `6.11.7` and Parallels Tools `20.1.55732`. (_2024-10-30_)
-  - _2024-10-23_
-    - Add Fedora 41 BETA box with kernel `6.11.5` and Parallels Tools `20.1.55732`.
-    - Update Fedora 40 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
-    - Update Fedora 39 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
-- `0.0.8` _2024-05-21_
-  - Remove optional packages _vim_ and _wget_ from the installed packages.
-  - Add Fedora 38 to the EOL list.
-  - Update Fedora 39 box (`0.0.8`) with kernel `6.8.9` and Parallels Tools `19.3.1.54941`.
-  - Add Fedora 40 box with kernel `6.8.9` and Parallels Tools `19.3.1.54941`.
-- `0.0.7` _2023-10-31_
-  - Fedora 39 (Kernel 6.5.10 and Parallels Tools 19.1.0) build added to the Vagrant Cloud (_2023-11-09_)
-  - Updated Fedora 37 and 38 kernel to 6.5.8
-  - Updated Vagrantfile templates attached to the built boxes
-  - Fixed hostname setting
-  - Fedora 39b build updated on Vagrant Cloud (_2023-10-31_)
-  - Fedora 38 build updated on Vagrant Cloud (_2023-10-31_)
-  - Fedora 37 build updated on Vagrant Cloud (_2023-10-31_)
-- `0.0.6` _2023-10-20_
-  - Parallels tools upgraded to 19.1.0
-  - File system changed from XFS to BTRFS
-  - Removed unused HyperV specific kickstart config
-  - Removed bfq scheduler config
-  - Fedora 39b build added to Vagrant Cloud (_2023-10-20_)
-  - Fedora 38 build updated (_2023-10-24_)
-  - Fedora 37 build updated (_2023-10-24_)
-- `0.0.5` _2023-03-25_
-  - Fedora 38 added to Vagrant Cloud (_2023-04-20_)
-  - Fedora 38 Beta version added to Vagrant Cloud
-  - Updated Fedora 35 repository addresses with archive URLs
-  - Parallels tools upgraded to 18.2.0
-- `0.0.4`
-  - Parallels tools upgraded to 18.1.0
-- `0.0.3`
-  - Some script rearrangements.
-- `0.0.2`
-  - Fixed Parallels virtual disk snapshot compaction/merger issue.
-  - Add `cloud-utils-growpart` package.
-- `0.0.1`
-  - Initial alpha release.
 
 ## Building Vagrant Box
 
@@ -103,7 +57,7 @@ make init
 make box=<box-type> build-box
 ```
 
-`<box-type` can be one of the following:
+`<box-type>` can be one of the following:
 
 - `fedora41` ([Release schedule](https://fedorapeople.org/groups/schedule/f-41/f-41-key-tasks.html))
 - `fedora40` ([Release schedule](https://fedorapeople.org/groups/schedule/f-40/f-40-key-tasks.html))
@@ -163,3 +117,9 @@ sudo ln -s \
 ## Credits
 
 - This repository is a very stripped-down version of [lavabit/robox](https://github.com/lavabit/robox).
+
+[fedora-41-aarch64]: https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay//fedora-41-aarch64
+[fedora-40-aarch64]: https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay//fedora-40-aarch64
+[fedora-39-aarch64]: https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay//fedora-39-aarch64
+[fedora-38-aarch64]: https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay//fedora-38-aarch64
+[fedora-37-aarch64]: https://portal.cloud.hashicorp.com/vagrant/discover/dcagatay//fedora-37-aarch64
