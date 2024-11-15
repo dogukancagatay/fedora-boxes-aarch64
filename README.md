@@ -10,7 +10,7 @@ You can access all available versions on [https://app.vagrantup.com/dcagatay](ht
 
 ## Vagrant Boxes
 
-- [Fedora 41b](https://app.vagrantup.com/dcagatay/boxes/fedora-41b-aarch64)
+- [Fedora 41](https://app.vagrantup.com/dcagatay/boxes/fedora-41-aarch64)
 - [Fedora 40](https://app.vagrantup.com/dcagatay/boxes/fedora-40-aarch64)
 - [Fedora 39](https://app.vagrantup.com/dcagatay/boxes/fedora-39-aarch64)
 - ~~[Fedora 38](https://app.vagrantup.com/dcagatay/boxes/fedora-38-aarch64)~~
@@ -23,7 +23,7 @@ You can access all available versions on [https://app.vagrantup.com/dcagatay](ht
 Initialize a Vagrantfile and start your VM.
 
 ```sh
-vagrant init dcagatay/fedora-40-aarch64
+vagrant init dcagatay/fedora-41-aarch64
 vagrant up
 ```
 
@@ -35,10 +35,14 @@ vagrant ssh
 
 ## Changelog
 
-- `0.0.9` _2024-10-23_
-  - Add Fedora 41 BETA box with kernel `6.11.5` and Parallels Tools `20.1.55732`.
-  - Update Fedora 40 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
-  - Update Fedora 39 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
+- `0.0.9`
+  - _2024-10-30_
+    - Remove Fedora 41 BETA box
+    - Add Fedora 41 box with kernel `6.11.7` and Parallels Tools `20.1.55732`. (_2024-10-30_)
+  - _2024-10-23_
+    - Add Fedora 41 BETA box with kernel `6.11.5` and Parallels Tools `20.1.55732`.
+    - Update Fedora 40 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
+    - Update Fedora 39 box (`0.0.9`) with kernel `6.11.4` and Parallels Tools `20.1.55732`.
 - `0.0.8` _2024-05-21_
   - Remove optional packages _vim_ and _wget_ from the installed packages.
   - Add Fedora 38 to the EOL list.
