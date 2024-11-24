@@ -10,7 +10,7 @@ source "parallels-iso" "generic-fedora41-aarch64-parallels" {
   boot_wait              = "10s"
   boot_command = [
     "<up>e<wait1><down><down><wait2><leftCtrlOn>e<leftCtrlOff> ",
-    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.fedora41.vagrant.ks ",
+    "<wait>inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora${local.fedora_version}.vagrant.ks ",
     "<wait>inst.text ",
     "<wait>biosdevname=0 ",
     "<wait>net.ifnames=0 ",
@@ -19,7 +19,9 @@ source "parallels-iso" "generic-fedora41-aarch64-parallels" {
   guest_os_type              = "fedora-core"
   parallels_tools_flavor     = "lin-arm"
   hard_drive_interface       = "sata"
-  http_directory             = "http"
+  http_content               = {
+    "/fedora${local.fedora_version}.vagrant.ks" = templatefile("../templates/fedora.vagrant.pkrtpl.ks", { fedora_version = local.fedora_version })
+  }
   parallels_tools_guest_path = "/root/parallels-tools-linux.iso"
   parallels_tools_mode       = "upload"
   prlctl = [
