@@ -59,7 +59,7 @@ jobs:
 
       - name: Build Images
         run: |
-          packer init templates
+          packer init builders
           make fedora35
           make fedora36
           make fedora37

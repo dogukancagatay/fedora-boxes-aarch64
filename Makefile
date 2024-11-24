@@ -23,7 +23,7 @@ all: preflight
 	packer build \
 		-force \
 		-on-error=$(PACKER_ON_ERROR) \
-		./templates
+		./builders
 
 preflight:
 	mkdir -p "$(shell dirname $(PACKER_LOG_PATH))" output
@@ -31,7 +31,7 @@ preflight:
 # usage: make box=fedora37 init
 init: preflight
 	@echo "Initialize $@"
-	packer init -upgrade ./templates
+	packer init -upgrade ./builders
 
 # usage: make build-box box=fedora37
 build-box: preflight
@@ -41,7 +41,7 @@ build-box: preflight
 		-force \
 		-on-error=$(PACKER_ON_ERROR) \
 		-only="parallels-iso.$(BOX_LABEL)" \
-		./templates
+		./builders
 
 # usage: make import box=fedora37
 import:
